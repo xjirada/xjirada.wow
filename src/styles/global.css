@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+color-scheme: dark;
+}
+
+
+html, body {
+@apply bg-bg text-text antialiased;
+}
+
+
+.container {
+@apply max-w-5xl mx-auto px-4;
+}
+
+
+.prose :where(code):not(:where(pre *)) {
+@apply bg-card/60 px-1.5 py-0.5 rounded;
+}
+
+
+.prose pre {
+@apply bg-card/60 p-4 rounded-xl overflow-auto;
+}

@@ -1,0 +1,19 @@
+---
+import Tag from './Tag.astro';
+const { post } = Astro.props;
+const { data } = post;
+---
+<a href={post.slug ? `/writeups/${post.slug}` : post.url} class="block rounded-2xl bg-card border border-white/10 hover:border-accent/60 transition p-5">
+<div class="flex items-center justify-between gap-3">
+<h3 class="text-lg font-semibold">{data.title}</h3>
+<span class="text-xs px-2 py-1 rounded bg-white/10">{data.platform}</span>
+</div>
+<p class="mt-2 text-sm opacity-80">{data.summary}</p>
+<div class="mt-3 flex flex-wrap gap-2">
+{data.tags?.map((t) => <Tag name={t} />)}
+{data.difficulty && (
+<span class="text-xs px-2 py-1 rounded border border-white/10">{data.difficulty}</span>
+)}
+</div>
+<div class="mt-3 text-xs opacity-60">{new Date(data.date).toLocaleDateString()}</div>
+</a>

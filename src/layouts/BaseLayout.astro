@@ -1,0 +1,22 @@
+---
+const { title = 'Portfolio', description = 'CTF/HTB Portfolio', ogImage = '/og-default.png' } = Astro.props;
+---
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body class="min-h-screen flex flex-col">
+<slot name="header" />
+<main class="flex-1">
+<slot />
+</main>
+<slot name="footer" />
+</body>
+</html>

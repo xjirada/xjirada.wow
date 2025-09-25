@@ -1,0 +1,6 @@
+---
+const { name } = Astro.props;
+---
+<a href={`/tags/${encodeURIComponent(name)}`} class="inline-flex items-center text-xs px-2 py-1 rounded-full bg-card/70 hover:bg-card border border-white/10">
+#{name}
+</a>

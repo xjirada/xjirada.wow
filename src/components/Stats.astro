@@ -1,0 +1,17 @@
+---
+const { total, ctf, htb } = Astro.props;
+---
+<div class="grid grid-cols-3 gap-3">
+<div class="rounded-2xl bg-card p-4">
+<div class="text-xs opacity-70">Total Writeups</div>
+<div class="text-2xl font-semibold">{total}</div>
+</div>
+<div class="rounded-2xl bg-card p-4">
+<div class="text-xs opacity-70">CTF</div>
+<div class="text-2xl font-semibold">{ctf}</div>
+</div>
+<div class="rounded-2xl bg-card p-4">
+<div class="text-xs opacity-70">HTB</div>
+<div class="text-2xl font-semibold">{htb}</div>
+</div>
+</div>

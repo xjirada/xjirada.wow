@@ -1,0 +1,50 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import PostCard from '@/components/PostCard.astro';
+import Stats from '@/components/Stats.astro';
+import Search from '@/components/Search.astro';
+import { getCollection } from 'astro:content';
+import { SITE_DESCRIPTION, SITE_TITLE } from '@/content/config';
+
+
+const posts = (await getCollection('writeups')).sort((a,b)=> +new Date(b.data.date) - +new Date(a.data.date));
+const total = posts.length;
+const ctf = posts.filter(p=>p.data.platform==='CTF').length;
+const htb = posts.filter(p=>p.data.platform==='HTB').length;
+---
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<Fragment slot="header"><Header /></Fragment>
+
+
+<section class="container py-8 space-y-6">
+<h1 class="text-3xl font-bold tracking-tight">{SITE_TITLE}</h1>
+<p class="opacity-80">{SITE_DESCRIPTION}</p>
+
+
+<Stats total={total} ctf={ctf} htb={htb} />
+
+
+<div class="flex items-center gap-3">
+<a href="/?filter=all" class="underline">All</a>
+<a href="/?filter=CTF" class="underline">CTF</a>
+<a href="/?filter=HTB" class="underline">HTB</a>
+</div>
+
+
+<Search />
+
+
+<div class="grid md:grid-cols-2 gap-4">
+{posts.map((post) => (
+<div data-post data-hay={`${post.data.title} ${post.data.tags?.join(' ')} ${post.data.summary}`}>
+<PostCard post={post} />
+</div>
+))}
+</div>
+</section>
+
+
+<Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>

